@@ -1,3 +1,7 @@
+package model;
+
+import java.util.Objects;
+
 public class Carro {
     private String cor;
     private String marca;
@@ -6,10 +10,22 @@ public class Carro {
     private Integer velocidadeAtual;
     private Integer velocidadeMaxima;
 
+    public Carro(String cor, String marca, String modelo) {
+        this.cor = cor;
+        this.marca = marca;
+        this.modelo = modelo;
+    }
+
     public Carro() {
         this.velocidadeAtual = 0;
         this.ligado = false;
         this.velocidadeMaxima = 200;
+    }
+
+    public Carro(Integer velocidadeMaxima) {
+        this.velocidadeAtual = 0;
+        this.ligado = false;
+        this.velocidadeMaxima = velocidadeMaxima;
     }
 
     public void ligar() {
@@ -21,7 +37,6 @@ public class Carro {
     }
 
     public void acelerar(Integer velocidade) {
-//        this.velocidadeAtual += velocidade;
         if(this.velocidadeMaxima <= velocidade + velocidadeAtual) {
             this.velocidadeAtual = this.velocidadeMaxima;
         } else {
@@ -30,7 +45,11 @@ public class Carro {
     }
 
     public void frear(Integer velocidade) {
-        this.velocidadeAtual -= velocidade;
+        if(this.velocidadeAtual-velocidade <= 0) {
+            this.velocidadeAtual = 0;
+        } else {
+            this.velocidadeAtual = this.velocidadeAtual - velocidade;
+        }
     }
 
     public String getCor() {
@@ -79,5 +98,13 @@ public class Carro {
 
     public void setVelocidadeMaxima(Integer velocidadeMaxima) {
         this.velocidadeMaxima = velocidadeMaxima;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Carro)) return false;
+        Carro carro = (Carro) o;
+        return Objects.equals(marca, carro.marca) && Objects.equals(modelo, carro.modelo);
     }
 }
