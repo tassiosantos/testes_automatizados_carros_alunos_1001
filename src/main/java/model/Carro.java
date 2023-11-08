@@ -1,5 +1,7 @@
 package model;
 
+import exception.AceleracaoNegativaException;
+
 import java.util.Objects;
 
 public class Carro {
@@ -9,6 +11,7 @@ public class Carro {
     private Boolean ligado;
     private Integer velocidadeAtual;
     private Integer velocidadeMaxima;
+    private Boolean trancado;
 
     public Carro(String cor, String marca, String modelo) {
         this.cor = cor;
@@ -32,11 +35,23 @@ public class Carro {
         this.ligado = true;
     }
 
+    public void trancar() {
+        if(trancado == true) {
+            System.out.println("Ja esta trancado");
+        } else {
+            trancado = true;
+        }
+    }
+
     public void desligar() {
         this.ligado = false;
     }
 
-    public void acelerar(Integer velocidade) {
+    public void acelerar(Integer velocidade) throws Exception {
+        if(velocidade < 0) {
+            // Exception - desvio de uma regra ou de um padrão convencionalmente aceito.
+            throw new Exception("A aceleracao não pode ser menor que zero!");
+        }
         if(this.velocidadeMaxima <= velocidade + velocidadeAtual) {
             this.velocidadeAtual = this.velocidadeMaxima;
         } else {

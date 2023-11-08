@@ -2,6 +2,8 @@ import model.Carro;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.*;
+
 public class PraticandoAssertivas {
 
     @Test
@@ -56,6 +58,8 @@ public class PraticandoAssertivas {
         Integer b2 = 1;
 
         Assert.assertEquals(a2, b2);
+
+        Assert.assertEquals(Math.PI, 3.141592, 0.001);
     }
 
     @Test
@@ -91,12 +95,32 @@ public class PraticandoAssertivas {
         Assert.assertSame(carro, carro1);
     }
 
-
     @Test
     public void assertNotSame() {
         Carro carro = new Carro();
         Carro carro1 = new Carro();
 
         Assert.assertNotSame(carro, carro1);
+    }
+
+    // assertThat - verifique Que
+
+    @Test
+    public void praticandoAssertThat() {
+        int a = 1;
+        int b = 1;
+
+        //     verifique que 'a' é igual a 'b'
+        Assert.assertThat(a, is(equalTo(b))); // Matchers
+
+
+        String s1 = "Pedro";
+        String s2 = "Ana";
+
+        Assert.assertThat(s1, is(not(s2)));
+
+        Carro carro = new Carro();
+
+        Assert.assertThat(carro, is(instanceOf(Carro.class)));
     }
 }

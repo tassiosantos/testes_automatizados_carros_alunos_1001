@@ -31,30 +31,6 @@ public class Main {
      */
 
     public static void main(String[] args) {
-    }
-
-    public void testes() {
-        // Junit
-
-        // Gherkin
-
-
-
-        // Teste #4 - Deve desligar corretamente um carro ligado
-        // Given (Dado)
-        Carro carro_04 = new Carro();
-
-        // When (Quando)
-        carro_04.ligar();
-        carro_04.desligar();
-
-        // Then (Então)
-        System.out.println("Teste 04");
-        System.out.println(carro_04.getLigado() == false);
-
-
-
-
 
     }
 
