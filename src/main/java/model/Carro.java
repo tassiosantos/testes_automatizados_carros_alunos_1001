@@ -17,18 +17,31 @@ public class Carro {
         this.cor = cor;
         this.marca = marca;
         this.modelo = modelo;
+        this.trancado = true;
     }
 
     public Carro() {
         this.velocidadeAtual = 0;
         this.ligado = false;
         this.velocidadeMaxima = 200;
+        this.trancado = true;
+    }
+
+    public Carro(String cor, String marca, String modelo, Integer velocidadeMaxima) {
+        this.cor = cor;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.velocidadeMaxima = velocidadeMaxima;
+        this.velocidadeAtual = 0;
+        this.ligado = false;
+        this.trancado = true;
     }
 
     public Carro(Integer velocidadeMaxima) {
         this.velocidadeAtual = 0;
         this.ligado = false;
         this.velocidadeMaxima = velocidadeMaxima;
+        this.trancado = true;
     }
 
     public void ligar() {
@@ -95,24 +108,16 @@ public class Carro {
         return ligado;
     }
 
-    public void setLigado(Boolean ligado) {
-        this.ligado = ligado;
-    }
-
     public Integer getVelocidadeAtual() {
         return velocidadeAtual;
-    }
-
-    public void setVelocidadeAtual(Integer velocidadeAtual) {
-        this.velocidadeAtual = velocidadeAtual;
     }
 
     public Integer getVelocidadeMaxima() {
         return velocidadeMaxima;
     }
 
-    public void setVelocidadeMaxima(Integer velocidadeMaxima) {
-        this.velocidadeMaxima = velocidadeMaxima;
+    public Boolean getTrancado() {
+        return trancado;
     }
 
     @Override

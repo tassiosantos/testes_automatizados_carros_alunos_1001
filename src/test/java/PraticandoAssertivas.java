@@ -123,4 +123,6 @@ public class PraticandoAssertivas {
 
         Assert.assertThat(carro, is(instanceOf(Carro.class)));
     }
+
+
 }
