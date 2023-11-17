@@ -78,7 +78,30 @@ public class CarroTest {
     }
 
 
+    @Test
+    public void deveCriarUmCarroComCorMarcaModelo(){
+        Carro carro = new Carro("Preto", "BMW", "X1");
 
+        assertAll("Testando atributos do carro",
+                () -> assertEquals("Preto", carro.getCor()),
+                () -> assertEquals("BMW", carro.getMarca()),
+                () -> assertEquals("X1", carro.getModelo())
+        );
+    }
+
+    @Test
+    public void deveCriarUmCarroSemNenhumParametro(){
+        Carro carro = new Carro();
+
+        assertAll("Testando atributos do carro",
+                () -> assertEquals(0, carro.getVelocidadeAtual()),
+                () -> assertEquals(200, carro.getVelocidadeMaxima()),
+                () -> assertNull(carro.getCor()),
+                () -> assertNull(carro.getMarca()),
+                () -> assertNull(carro.getModelo())
+        );
+
+    }
     @Test
     public void deveCriarUmCarroComTodosOsCampos() {
         // public Carro(String cor, String marca, String modelo, Integer velocidadeMaxima)
@@ -93,6 +116,19 @@ public class CarroTest {
     }
 
     @Test
+    public void deveCriarUmCarroApenasComVelocidadeMaxima(){
+        Carro carro = new Carro(210);
+
+        assertAll("Testando atributos do carro",
+                () -> assertNull(carro.getCor()),
+                () -> assertNull(carro.getMarca()),
+                () -> assertNull(carro.getModelo()),
+                () -> assertEquals(210, carro.getVelocidadeMaxima())
+        );
+    }
+
+
+    @Test
     public void deveIniciarDesligado() {
         System.out.println("deveIniciarDesligado");
         // Given (Dado)
@@ -103,7 +139,6 @@ public class CarroTest {
 
 
     @Test
-    @Disabled // TODO
     public void deveLigarCorretamente() {
         System.out.println("deveLigarCorretamente");
         // Teste #3 - Deve ligar corretamente
@@ -145,6 +180,19 @@ public class CarroTest {
     }
 
     @Test
+    public  void deveFrearCorretamente() throws Exception {
+        //Given
+        Carro carro = new Carro();
+        //When
+        carro.ligar();
+        carro.acelerar(50);
+        carro.frear(20);
+        //Then
+        assertEquals(30, carro.getVelocidadeAtual());
+
+    }
+
+    @Test
     public void naoDeveUltrapassarAVelocidadeMaxima() throws Exception {
         System.out.println("naoDeveUltrapassarAVelocidadeMaxima");
         // Teste #6 - Não pode ultrapassar a velocidade maxima
@@ -160,6 +208,14 @@ public class CarroTest {
         // Then
         assertEquals((Integer) 200, carro.getVelocidadeAtual());
     }
+    @Test
+    public void deveDesligarCorretamente(){
+        Carro carro = new Carro();
+        carro.ligar();
+        carro.desligar();
+        assertFalse(carro.getLigado());
+    }
+
 
     @Test
     public void naoDeveTerVelocidadeInferiorAZero() throws Exception {
@@ -206,4 +262,39 @@ public class CarroTest {
         // Then
         assertEquals(true, carro.getTrancado());
     }
+
+    @Test
+    public void deveDeterminarMarcaDoCarro(){
+        Carro carro = new Carro("Preto", "BMW", "X1", 350);
+        carro.setMarca("Porche");
+
+        assertEquals(carro.getMarca(), "Porche");
+    }
+
+    @Test
+    public void deveDeterminarModeloDoCarro(){
+        Carro carro = new Carro("Preto", "BMW", "X1", 350);
+        carro.setModelo("M3");
+
+        assertEquals(carro.getModelo(), "M3");
+    }
+
+
+    @Test
+    public void deveDeterminarCorDoCarro(){
+        Carro carro = new Carro("Preto", "BMW", "X1", 350);
+        carro.setCor("Azul");
+
+        assertEquals(carro.getCor(), "Azul");
+    }
+
+    @Test
+    public void deveDeterminarCorretamenteOMesmoCarro(){
+        Carro carro = new Carro("Preto", "BMW", "X1", 350);
+        carro.setCor("Azul");
+        Carro carro1 = carro;
+        assertEquals(carro, carro1);
+    }
+
+
 }
